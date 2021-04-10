@@ -1,0 +1,28 @@
+<div class="container-fluid mt-4">
+    <h4>Top Rated Movies!</h4>
+    <hr>
+    <div class="row">
+        <div 
+            class="col mb-4"
+            *ngFor="let movie of movies"
+        >
+            <a 
+                [routerLink]="['/movie', movie.id]"
+                class="text-decoration-none text-reset"
+            >
+                <img [src]="img + movie.poster_path">
+                <h6 class="mb-0">{{ movie.title }}</h6>
+                <small class="mt-0"> {{ movie.vote_average }} - {{ movie.release_date | date }} </small>
+            </a>
+        </div>
+        <button 
+            class="btn btn-primary"
+            type="button" 
+            disabled
+            *ngIf="!(movies.length > 0)"
+        >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+        </button>
+    </div>
+</div>

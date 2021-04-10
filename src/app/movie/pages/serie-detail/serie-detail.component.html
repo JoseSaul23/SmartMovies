@@ -1,0 +1,48 @@
+<div class="alert alert-info" *ngIf="!serie; else templateSerie">
+    Loading TV Serie...
+</div>
+
+<ng-template #templateSerie>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col p-0">
+                <img [src]="img + serie.poster_path">
+            </div>
+            <div class="col mt-4">
+                <h4>{{ serie.name }}</h4>
+                <hr>
+                <p>
+                    {{ serie.first_air_date | date }} - 
+                    <span *ngFor="let genre of serie.genres">
+                        {{ genre.name }} -
+                    </span>
+                    {{ serie.episode_run_time }} minutes per episode
+                </p>
+                <p>
+                    User's Score: {{ serie.vote_average }}
+                </p>
+                <p>
+                    {{ serie.overview }}
+                </p>
+                <hr>
+                <div class="container">
+                    <h5 class="my-4">Similar Series to {{ serie.name }}</h5>
+                    <div class="row">
+                        <div 
+                            class="col-6 mb-4"
+                            *ngFor="let relate of related"
+                        >
+                            <a 
+                                [routerLink]="['/serie', relate.id]"
+                                class="text-decoration-none text-reset"
+                            >
+                                <img [src]="img2 + relate.poster_path">
+                                <h6>{{ relate.name }}</h6>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,32 @@
+<div class="container-fluid mt-4">
+    <h4>Search results </h4>
+    <hr>
+    <div class="row">
+        <ng-template #resultsTemplate>
+            <div 
+                class="col mb-4"
+                *ngFor="let result of results"
+            >
+                <a 
+                    [routerLink]="['/movie', result.id]"
+                    class="text-decoration-none text-reset"
+                >
+                    <img [src]="img + result.poster_path">
+                    <h6 class="mb-0">{{ result.title }}</h6>
+                    <small class="mt-0"> 
+                        {{ result.vote_average }} - {{ result.release_date | date }} 
+                    </small>
+                </a>
+            </div>
+        </ng-template>
+        <button 
+            class="btn btn-primary"
+            type="button" 
+            disabled
+            *ngIf="!(results.length > 0); else resultsTemplate"
+        >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+        </button>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container-fluid mt-4">
+    <h4>Popular TV Series</h4>
+    <hr>
+    <div class="row">
+        <div 
+            class="col mb-4"
+            *ngFor="let serie of series"
+        >
+            <a 
+                [routerLink]="['/serie', serie.id]"
+                class="text-decoration-none text-reset"
+            >
+                <img [src]="img + serie.poster_path">
+                <h6 class="mb-0">{{ serie.name }}</h6>
+                <small class="mt-0"> {{ serie.vote_average }} - {{ serie.first_air_date | date }} </small>
+            </a>
+        </div>
+        <button 
+            class="btn btn-primary"
+            type="button" 
+            disabled
+            *ngIf="!(series.length > 0)"
+        >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading series...
+        </button>
+    </div>
+</div>

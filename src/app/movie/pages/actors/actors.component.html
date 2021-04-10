@@ -1,0 +1,28 @@
+<div class="container-fluid mt-4">
+    <h4>Popular Actors Now</h4>
+    <hr>
+    <div class="row row-cols-5">
+        <div class="col mb-4"  *ngFor="let actor of actors">
+            <a 
+                [routerLink]="['/actor', actor.id]"
+                class="text-decoration-none text-reset"
+            >
+                <div class="card shadow">
+                    <img [src]="img + actor.profile_path" class="card-img-top img-fluid">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ actor.name }}</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <button 
+            class="btn btn-primary"
+            type="button" 
+            disabled
+            *ngIf="!(actors.length > 0)"
+        >
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading actors...
+        </button>
+    </div>
+</div>

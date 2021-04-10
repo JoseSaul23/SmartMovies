@@ -1,0 +1,27 @@
+<div class="alert alert-info" *ngIf="!actor; else templateActor">
+    Loading Actor...
+</div>
+
+<ng-template #templateActor>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col p-0">
+                <img [src]="img + actor.profile_path">
+            </div>
+            <div class="col mt-4">
+                <h4>{{ actor.name }}</h4>
+                <hr>
+                <span class="mb-3 text-secondary">Birthday:</span> {{ actor.birthday | date }} 
+                <br>
+                <p  class="mb-3">
+                    <span class="mb-3 text-secondary">Place of birth:</span> {{ actor.place_of_birth }}
+                </p>
+                <h5>Biography:</h5>
+                <p>
+                    {{ actor.biography }}
+                </p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</ng-template>
